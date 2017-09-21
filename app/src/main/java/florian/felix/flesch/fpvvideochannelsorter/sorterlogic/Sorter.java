@@ -180,7 +180,7 @@ public class Sorter {
     private static int getMinDisCoeff(ArrayList<Pilot> solution, boolean considerIMD) {
         if (considerIMD) {
             int[] vector = getMinDisVector(solution);
-            return vector[0] + vector[1];
+            return vector[0] + (1000*vector[1]);
         } else {
             return getMinDis(solution);
         }

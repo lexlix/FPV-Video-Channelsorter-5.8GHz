@@ -24,26 +24,21 @@
 
 package florian.felix.flesch.fpvvideochannelsorter.sorterlogic;
 
-        import java.util.ArrayList;
-        import java.util.Collections;
+import java.util.ArrayList;
 
-        import florian.felix.flesch.fpvvideochannelsorter.Pilot;
+import florian.felix.flesch.fpvvideochannelsorter.Pilot;
 
 public class Sorter {
 
     private Sorter(){}
 
-    public static ArrayList<Pilot> sort(ArrayList<Pilot> pilots, int minFreqency, int maxFrequency) {
-        return sort(pilots, minFreqency, maxFrequency, true);
-    }
-
-    public static ArrayList<Pilot> sort(ArrayList<Pilot> pilots, int minFreqency, int maxFrequency, boolean considerIMD) {
+    public static ArrayList<Pilot> sort(ArrayList<Pilot> pilots, boolean considerIMD) {
 
         ArrayList<Pilot> solution = new ArrayList<>();
 
         for(int i=0; i<pilots.size(); i++) {
             Pilot p = pilots.get(i).getCopy();
-            p.setFrequency(p.getAvailableFrequencies(minFreqency, maxFrequency).get(0));
+            p.setFrequency(p.getAvailableFrequencies().get(0));
             solution.add(p);
         }
 
@@ -54,37 +49,35 @@ public class Sorter {
 
         ArrayList<Pilot> finalSolution = solution;
 
-        for(int i=0; i<pilots.get(0).getAvailableFrequencies(minFreqency, maxFrequency).size(); i++) {
+        for(int i=0; i<pilots.get(0).getAvailableFrequencies().size(); i++) {
 
             ArrayList<Pilot> newSolution = new ArrayList<>();
             Pilot p = pilots.get(0).getCopy();
-            p.setFrequency(p.getAvailableFrequencies(minFreqency, maxFrequency).get(i));
+            p.setFrequency(p.getAvailableFrequencies().get(i));
             newSolution.add(p);
 
-            finalSolution = recursion(remainingP, newSolution, finalSolution, getMinDisCoeff(finalSolution, considerIMD), minFreqency, maxFrequency, considerIMD);
+            finalSolution = recursion(remainingP, newSolution, finalSolution, getMinDisCoeff(finalSolution, considerIMD), considerIMD);
         }
 
 
-        for(int i=0; i<finalSolution.size(); i++) {
+        /*for(int i=0; i<finalSolution.size(); i++) {
             System.out.println(finalSolution.get(i).getFrequency());
         }
         int[] minDis = getMinDisVector(finalSolution);
         System.out.println("MinDis: " + minDis[0]);
         System.out.println("MinDisIMD: " + minDis[1]);
-        System.out.println("IMDRating: " + minDis[2]);
+        System.out.println("IMDRating: " + minDis[2]);*/
 
         return finalSolution;
     }
 
-    private static ArrayList<Pilot> recursion(ArrayList<Pilot> remainingP, ArrayList<Pilot> newSolution, ArrayList<Pilot> solution, int minDis, int minFrequency, int maxFrequency, boolean considerIMD) {
-        for(int i=0; i<remainingP.get(0).getAvailableFrequencies(minFrequency, maxFrequency).size(); i++) { //go throu each remaindingP.get(0) elements
+    private static ArrayList<Pilot> recursion(ArrayList<Pilot> remainingP, ArrayList<Pilot> newSolution, ArrayList<Pilot> solution, int minDis, boolean considerIMD) {
+        for(int i=remainingP.get(0).getAvailableFrequencies().size()-1; 0<=i; i--) { //go throu each remaindingP.get(0) elements
             ArrayList<Pilot> newSolutionCopy = new ArrayList<>();
-            for(int j=0; j<newSolution.size(); j++) {
-                newSolutionCopy.add(newSolution.get(j));
-            }
+            newSolutionCopy.addAll(newSolution);
 
             Pilot p = remainingP.get(0).getCopy();
-            p.setFrequency(p.getAvailableFrequencies(minFrequency, maxFrequency).get(i));
+            p.setFrequency(p.getAvailableFrequencies().get(i));
             newSolutionCopy.add(p);
 
             int newMinDis = getMinDisCoeff(newSolutionCopy, considerIMD);
@@ -99,7 +92,7 @@ public class Sorter {
                     solution = newSolutionCopy;
                 }
                 else { //still elements to add -> call recursion
-                    solution = recursion(newRemaindingP, newSolutionCopy, solution, minDis, minFrequency, maxFrequency, considerIMD);
+                    solution = recursion(newRemaindingP, newSolutionCopy, solution, minDis, considerIMD);
                     minDis = getMinDisCoeff(solution, considerIMD);
                 }
             }

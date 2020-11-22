@@ -25,8 +25,8 @@
 package florian.felix.flesch.fpvvideochannelsorter;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.widget.TextView;
 
 import florian.felix.flesch.fpvvideochannelsorter.sorterlogic.Frequency;

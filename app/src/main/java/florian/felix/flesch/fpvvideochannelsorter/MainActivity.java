@@ -27,15 +27,14 @@ package florian.felix.flesch.fpvvideochannelsorter;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+import com.google.android.material.snackbar.Snackbar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
 import android.text.InputType;
 import android.view.View;
 import android.view.Menu;
@@ -157,8 +156,8 @@ public class MainActivity extends AppCompatActivity implements NumberPicker.OnVa
         rvPilots.addOnItemTouchListener(swipeTouchListener);
 
         this.pilots = new ArrayList<>();
-        Pilot pilot1 = new Pilot(0,"Pilot 1", false, false, false, false, false, false);
-        Pilot pilot2 = new Pilot(1, "Pilot 2", false, false, false, false, false, false);
+        Pilot pilot1 = new Pilot(0,"Pilot 1", false, false, false, false, false, false, 5362, 5945);
+        Pilot pilot2 = new Pilot(1, "Pilot 2", false, false, false, false, false, false, 5362, 5945);
         this.pilots.add(pilot1);
         this.pilots.add(pilot2);
 
@@ -173,7 +172,7 @@ public class MainActivity extends AppCompatActivity implements NumberPicker.OnVa
             int oldPilotSize = this.pilots.size();
             for(int i=0; i<pilotCount-oldPilotSize; i++) {
                 int num = this.pilots.size()+1;
-                Pilot pilot = new Pilot(pilotCount-1, "Pilot "+num, false, false, false, false, false, false);
+                Pilot pilot = new Pilot(pilotCount-1, "Pilot "+num, false, false, false, false, false, false, rvPilotAdapter.getMinFrequency(), rvPilotAdapter.getMaxFrequency());
                 this.pilots.add(pilot);
 				this.rvPilotAdapter.setData(pilots, rvPilotAdapter.getMinFrequency(), rvPilotAdapter.getMaxFrequency(), rvPilotAdapter.isConsiderIMD());
                 this.rvPilotAdapter.notifyDataSetChanged();

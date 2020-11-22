@@ -26,9 +26,9 @@ package florian.felix.flesch.fpvvideochannelsorter;
 
 import android.content.DialogInterface;
 import android.os.AsyncTask;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
+import androidx.appcompat.app.AlertDialog;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -447,7 +447,7 @@ class Calc extends AsyncTask<Void, Void, Void> {
 	protected Void doInBackground(Void... params) {
 
 		try {
-			this.data = Sorter.sort(this.data, this.minFrequency, this.maxFrequency, this.considerIMD);
+			this.data = Sorter.sort(this.data, this.considerIMD);
 		} catch (Exception e) {
 			error = true;
 		}

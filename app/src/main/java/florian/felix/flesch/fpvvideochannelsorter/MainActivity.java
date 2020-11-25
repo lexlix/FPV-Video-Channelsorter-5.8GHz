@@ -171,8 +171,7 @@ public class MainActivity extends AppCompatActivity implements NumberPicker.OnVa
 			this.pilots = rvPilotAdapter.getData();
             int oldPilotSize = this.pilots.size();
             for(int i=0; i<pilotCount-oldPilotSize; i++) {
-                int num = this.pilots.size()+1;
-                Pilot pilot = new Pilot(pilotCount-1, "Pilot "+num, false, false, false, false, false, false, rvPilotAdapter.getMinFrequency(), rvPilotAdapter.getMaxFrequency());
+                Pilot pilot = new Pilot(pilotCount-1, getNewPilotName(), false, false, false, false, false, false, rvPilotAdapter.getMinFrequency(), rvPilotAdapter.getMaxFrequency());
                 this.pilots.add(pilot);
 				this.rvPilotAdapter.setData(pilots, rvPilotAdapter.getMinFrequency(), rvPilotAdapter.getMaxFrequency(), rvPilotAdapter.isConsiderIMD());
                 this.rvPilotAdapter.notifyDataSetChanged();
@@ -190,6 +189,32 @@ public class MainActivity extends AppCompatActivity implements NumberPicker.OnVa
         }
         // else if same do nothing
     }
+
+	private String getNewPilotName() {
+		int counter = 1;
+		String pilotName = "Pilot " + (this.pilots.size() + counter);
+
+		boolean free = false;
+		while(!free) {
+			boolean taken = false;
+
+			for (Pilot currentPilot : this.pilots) {
+				if(currentPilot.getName().equals(pilotName)) {
+					taken = true;
+					break;
+				}
+			}
+
+			if (taken) {
+				counter++;
+				pilotName = "Pilot " + (this.pilots.size() + counter);
+			} else {
+				free = true;
+			}
+		}
+
+		return pilotName;
+	}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

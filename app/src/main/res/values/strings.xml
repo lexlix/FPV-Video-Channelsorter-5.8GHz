@@ -34,6 +34,7 @@
     <string name="open_source">or visit the github Page to checkout the open source code:</string>
     <string name="contributors">Contributors:</string>
     <string name="felix_flesch" translatable="false">Felix-Florian Flesch</string>
+    <string name="manuel_vogel" translatable="false">Manuel Vogel</string>
     <string name="richard_bartelt" translatable="false">Richard Bartelt (IMD)</string>
     <string name="imd_info">More infos about IMD can be found here:</string>
     <string name="imd_url" translatable="false">http://www.etheli.com/IMD/</string>

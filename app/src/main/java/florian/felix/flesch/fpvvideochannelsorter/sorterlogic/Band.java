@@ -31,5 +31,6 @@ public enum Band
     BAND_E, //Boscam, Hobbyking, Foxtech
     BAND_F, //Fatshark, Immersion
     BAND_R, //RaceBand
+    BAND_DJI, //DJI
     BAND_L  //LowBand
 }

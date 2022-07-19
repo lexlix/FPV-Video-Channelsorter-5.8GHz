@@ -18,163 +18,172 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Pilot 1"
                 android:id="@+id/tvPilotnumber"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp" />
+                android:text="Pilot 1"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Band A"
                 android:id="@+id/cbA"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/tvPilotnumber"
-                android:layout_centerHorizontal="true" />
+                android:layout_centerHorizontal="true"
+                android:text="Band A" />
 
             <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Band B"
                 android:id="@+id/cbB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/cbA"
+                android:layout_alignStart="@+id/cbA"
                 android:layout_alignLeft="@+id/cbA"
-                android:layout_alignStart="@+id/cbA" />
+                android:text="Band B" />
 
             <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Band E"
                 android:id="@+id/cbE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/cbB"
+                android:layout_alignStart="@+id/cbB"
                 android:layout_alignLeft="@+id/cbB"
-                android:layout_alignStart="@+id/cbB" />
+                android:text="Band E" />
 
             <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Band F"
                 android:id="@+id/cbF"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/cbE"
-                android:layout_alignLeft="@+id/cbE"
                 android:layout_alignStart="@+id/cbE"
-                android:checked="false" />
+                android:layout_alignLeft="@+id/cbE"
+                android:checked="false"
+                android:text="Band F" />
 
             <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Band R"
                 android:id="@+id/cbR"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/cbF"
+                android:layout_alignStart="@+id/cbF"
                 android:layout_alignLeft="@+id/cbF"
-                android:layout_alignStart="@+id/cbF" />
+                android:text="Band R" />
 
             <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Band L"
                 android:id="@+id/cbD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/cbR"
+                android:layout_alignStart="@+id/cbR"
                 android:layout_alignLeft="@+id/cbR"
-                android:layout_alignStart="@+id/cbR" />
+                android:text="Band L" />
 
-            <TextView
+            <CheckBox
+                android:id="@+id/cbDJI"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/band"
+                android:layout_below="@+id/cbD"
+                android:layout_alignStart="@+id/cbR"
+                android:layout_alignLeft="@+id/cbD"
+                android:text="Band DJI" />
+
+            <TextView
                 android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/tvPilotnumber"
-                android:layout_alignLeft="@+id/tvPilotnumber"
                 android:layout_alignStart="@+id/tvPilotnumber"
-                android:layout_marginTop="10dp" />
+                android:layout_alignLeft="@+id/tvPilotnumber"
+                android:layout_marginTop="10dp"
+                android:text="@string/band" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/channel"
                 android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/textView13"
-                android:layout_alignLeft="@+id/textView13"
                 android:layout_alignStart="@+id/textView13"
-                android:layout_marginTop="10dp" />
+                android:layout_alignLeft="@+id/textView13"
+                android:layout_marginTop="10dp"
+                android:text="@string/channel" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/frequency"
                 android:id="@+id/textView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/textView14"
-                android:layout_alignLeft="@+id/textView14"
                 android:layout_alignStart="@+id/textView14"
-                android:layout_marginTop="10dp" />
+                android:layout_alignLeft="@+id/textView14"
+                android:layout_marginTop="10dp"
+                android:text="@string/frequency" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="-"
                 android:id="@+id/tvFrequency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/textView14"
-                android:layout_toLeftOf="@+id/cbE"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
                 android:layout_toStartOf="@+id/cbE"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="5dp" />
+                android:layout_toLeftOf="@+id/cbE"
+                android:text="-" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="-"
                 android:id="@+id/tvChannel"
-                android:layout_below="@+id/textView13"
-                android:layout_toLeftOf="@+id/cbB"
-                android:layout_toStartOf="@+id/cbB"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="5dp" />
-
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="-"
-                android:id="@+id/tvBand"
-                android:layout_alignTop="@+id/textView13"
-                android:layout_toLeftOf="@+id/cbB"
+                android:layout_below="@+id/textView13"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
                 android:layout_toStartOf="@+id/cbB"
-                android:layout_marginRight="5dp" />
+                android:layout_toLeftOf="@+id/cbB"
+                android:text="-" />
+
+            <TextView
+                android:id="@+id/tvBand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/textView13"
+                android:layout_marginRight="5dp"
+                android:layout_toStartOf="@+id/cbB"
+                android:layout_toLeftOf="@+id/cbB"
+                android:text="-" />
 
             <Switch
-                android:text="Fixed"
+                android:id="@+id/sw_pilot_fixed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/sw_pilot_fixed"
                 android:layout_alignBaseline="@+id/cbA"
                 android:layout_alignBottom="@+id/cbA"
-                android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginRight="5dp" />
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="5dp"
+                android:text="Fixed" />
 
             <Spinner
+                android:id="@+id/sp_pilot_channel"
+                style="@style/Widget.AppCompat.Spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/sp_pilot_channel"
-                android:layout_alignTop="@+id/tvChannel"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignLeft="@+id/sw_pilot_fixed"
                 android:layout_alignStart="@+id/sw_pilot_fixed"
-                style="@style/Widget.AppCompat.Spinner" />
+                android:layout_alignLeft="@+id/sw_pilot_fixed"
+                android:layout_alignTop="@+id/tvChannel"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true" />
 
             <TextView
-                android:text="@string/channel"
-                android:layout_width="wrap_content"
                 android:id="@+id/tv_pilot_channel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_above="@+id/sp_pilot_channel"
-                android:layout_alignLeft="@+id/sw_pilot_fixed"
                 android:layout_alignStart="@+id/sw_pilot_fixed"
-                android:layout_height="wrap_content" />
+                android:layout_alignLeft="@+id/sw_pilot_fixed"
+                android:text="@string/channel" />
 
         </RelativeLayout>
 

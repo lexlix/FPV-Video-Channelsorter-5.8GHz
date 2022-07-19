@@ -46,6 +46,7 @@ public class FrequencyOverview extends AppCompatActivity {
         TextView tvF = (TextView) findViewById(R.id.tv_overview_values_f);
         TextView tvR = (TextView) findViewById(R.id.tv_overview_values_r);
         TextView tvD = (TextView) findViewById(R.id.tv_overview_values_d);
+        TextView tvDJI = (TextView) findViewById(R.id.tv_overview_values_dji);
 
         String channels = "";
         for(int i=0; i<8; i++) {
@@ -100,6 +101,15 @@ public class FrequencyOverview extends AppCompatActivity {
             }
         }
         tvD.setText(channels);
+
+        channels = "";
+        for(int i=0; i<8; i++) {
+            channels += Frequency.BandDJI[i];
+            if(i != 7) {
+                channels += " - ";
+            }
+        }
+        tvDJI.setText(channels);
     }
 
 }

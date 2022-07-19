@@ -21,4 +21,6 @@ https://play.google.com/store/apps/details?id=florian.felix.flesch.fpvvideochann
 
 Felix-Florian Flesch ([lexlix](https://github.com/lexlix)) Project owner
 
+Manuel Vogel ([Fr33man85](https://github.com/Fr33man85)) Edit (DJI)
+
 Richard Bartelt ([Mio44](https://github.com/Mio44)) Impemented IMD according to ([etheli.com](http://www.etheli.com/IMD/))

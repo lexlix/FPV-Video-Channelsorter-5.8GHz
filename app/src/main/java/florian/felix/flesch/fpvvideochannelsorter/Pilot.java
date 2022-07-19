@@ -42,6 +42,7 @@ public class Pilot
     private boolean bandF;
     private boolean bandR;
     private boolean bandD;
+    private boolean bandDJI;
     private Frequency frequency = null;
     ArrayList<Frequency> availableFrequencies;
     int minFreq;
@@ -57,8 +58,9 @@ public class Pilot
      * @param bandF
      * @param bandR
      * @param bandD
+     * @param bandDJI
      */
-    public Pilot(int number, String name, boolean bandA, boolean bandB, boolean bandE, boolean bandF, boolean bandR, boolean bandD, int minFreq, int maxFreq)
+    public Pilot(int number, String name, boolean bandA, boolean bandB, boolean bandE, boolean bandF, boolean bandR, boolean bandD, boolean bandDJI, int minFreq, int maxFreq)
     {
         this.number = number;
         this.name = name;
@@ -68,6 +70,7 @@ public class Pilot
         this.bandF = bandF;
         this.bandR = bandR;
         this.bandD = bandD;
+        this.bandDJI = bandDJI;
         this.fixed = false;
         this.minFreq = minFreq;
         this.maxFreq = maxFreq;
@@ -120,6 +123,8 @@ public class Pilot
         return this.bandD;
     }
 
+    public boolean getBandDJI() {return this.bandDJI;}
+
     public boolean isFixed() {
         return this.fixed;
     }
@@ -167,6 +172,11 @@ public class Pilot
         calculateAvailableFrequencies();
     }
 
+    public void setBandDJI(boolean bandDJI) {
+        this.bandDJI = bandDJI;
+        calculateAvailableFrequencies();
+    }
+
     public void setFixed(boolean fixed) {
         this.fixed = fixed;
         calculateAvailableFrequencies();
@@ -181,7 +191,7 @@ public class Pilot
     }
 
     public boolean isSet() {
-        return this.bandA || this.bandB || this.bandE || this.bandF || this.bandR || this.bandD;
+        return this.bandA || this.bandB || this.bandE || this.bandF || this.bandR || this.bandD || this.bandDJI;
     }
 
 
@@ -212,6 +222,9 @@ public class Pilot
             }
             if(this.bandD) {
                 frequencies.add(new Frequency(Band.BAND_L, this.fixedChannel));
+            }
+            if(this.bandDJI) {
+                frequencies.add(new Frequency(Band.BAND_DJI, this.fixedChannel));
             }
         }
         else {
@@ -257,6 +270,14 @@ public class Pilot
                     }
                 }
             }
+
+            if(this.bandDJI) {
+                for(int i=1; i<9; i++) {
+                    if(Frequency.BandDJI[i-1] >= this.minFreq && Frequency.BandDJI[i-1] <= this.maxFreq) {
+                        frequencies.add(new Frequency(Band.BAND_DJI, i));
+                    }
+                }
+            }
         }
 
         this.availableFrequencies = frequencies;
@@ -280,7 +301,7 @@ public class Pilot
     }
 
     public Pilot getCopy() {
-        Pilot p = new Pilot(this.number, this.name, this.bandA, this.bandB, this.bandE, this.bandF, this.bandR, this.bandD, this.minFreq, this.maxFreq);
+        Pilot p = new Pilot(this.number, this.name, this.bandA, this.bandB, this.bandE, this.bandF, this.bandR, this.bandD, this.bandDJI, this.minFreq, this.maxFreq);
 
         p.fixed = this.fixed;
         p.fixedChannel = this.fixedChannel;

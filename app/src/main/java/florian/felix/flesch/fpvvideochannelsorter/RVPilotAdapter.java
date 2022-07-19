@@ -73,6 +73,7 @@ public class RVPilotAdapter extends RecyclerView.Adapter<RVPilotAdapter.PilotVie
         CheckBox cbF;
         CheckBox cbR;
         CheckBox cbD;
+        CheckBox cbDJI;
         Switch swFixed;
         Spinner spChannel;
         TextView tvspChannel;
@@ -90,6 +91,7 @@ public class RVPilotAdapter extends RecyclerView.Adapter<RVPilotAdapter.PilotVie
             this.cbF = (CheckBox)itemView.findViewById(R.id.cbF);
             this.cbR = (CheckBox)itemView.findViewById(R.id.cbR);
             this.cbD = (CheckBox)itemView.findViewById(R.id.cbD);
+            this.cbDJI = (CheckBox)itemView.findViewById(R.id.cbDJI);
             this.swFixed = (Switch)itemView.findViewById(R.id.sw_pilot_fixed);
             this.spChannel = (Spinner)itemView.findViewById(R.id.sp_pilot_channel);
             ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(itemView.getContext(), R.array.channels_array, android.R.layout.simple_spinner_item);
@@ -131,6 +133,7 @@ public class RVPilotAdapter extends RecyclerView.Adapter<RVPilotAdapter.PilotVie
         holder.cbF.setChecked(this.data.get(position).getBandF());
         holder.cbR.setChecked(this.data.get(position).getBandR());
         holder.cbD.setChecked(this.data.get(position).getBandD());
+        holder.cbDJI.setChecked(this.data.get(position).getBandDJI());
         holder.swFixed.setChecked(this.data.get(position).isFixed());
         holder.spChannel.setSelection(this.data.get(position).getFixedChannel()-1);
         if(this.data.get(position).isFixed()) {
@@ -160,6 +163,7 @@ public class RVPilotAdapter extends RecyclerView.Adapter<RVPilotAdapter.PilotVie
         final CheckBox fcbF = holder.cbF;
         final CheckBox fcbR = holder.cbR;
         final CheckBox fcbD = holder.cbD;
+        final CheckBox fcbDJI = holder.cbDJI;
 
         holder.spChannel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -184,6 +188,7 @@ public class RVPilotAdapter extends RecyclerView.Adapter<RVPilotAdapter.PilotVie
                     data.get(position).setBandF(false);
                     data.get(position).setBandR(false);
                     data.get(position).setBandD(false);
+                    data.get(position).setBandDJI(false);
                 }
                 sortChannels();
             }
@@ -199,6 +204,7 @@ public class RVPilotAdapter extends RecyclerView.Adapter<RVPilotAdapter.PilotVie
                     data.get(position).setBandF(false);
                     data.get(position).setBandR(false);
                     data.get(position).setBandD(false);
+                    data.get(position).setBandDJI(false);
                 }
                 sortChannels();
             }
@@ -214,6 +220,7 @@ public class RVPilotAdapter extends RecyclerView.Adapter<RVPilotAdapter.PilotVie
                     data.get(position).setBandF(false);
                     data.get(position).setBandR(false);
                     data.get(position).setBandD(false);
+                    data.get(position).setBandDJI(false);
                 }
                 sortChannels();
             }
@@ -229,6 +236,7 @@ public class RVPilotAdapter extends RecyclerView.Adapter<RVPilotAdapter.PilotVie
                     data.get(position).setBandE(false);
                     data.get(position).setBandR(false);
                     data.get(position).setBandD(false);
+                    data.get(position).setBandDJI(false);
                 }
                 sortChannels();
             }
@@ -244,6 +252,7 @@ public class RVPilotAdapter extends RecyclerView.Adapter<RVPilotAdapter.PilotVie
                     data.get(position).setBandE(false);
                     data.get(position).setBandF(false);
                     data.get(position).setBandD(false);
+                    data.get(position).setBandDJI(false);
                 }
                 sortChannels();
             }
@@ -259,6 +268,23 @@ public class RVPilotAdapter extends RecyclerView.Adapter<RVPilotAdapter.PilotVie
                     data.get(position).setBandE(false);
                     data.get(position).setBandF(false);
                     data.get(position).setBandR(false);
+                    data.get(position).setBandDJI(false);
+                }
+                sortChannels();
+            }
+        });
+
+        holder.cbDJI.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                data.get(position).setBandDJI(fcbDJI.isChecked());
+                if(data.get(position).isFixed() && fcbDJI.isChecked()) { //Disable all other bands in fixed mode
+                    data.get(position).setBandA(false);
+                    data.get(position).setBandB(false);
+                    data.get(position).setBandE(false);
+                    data.get(position).setBandF(false);
+                    data.get(position).setBandR(false);
+                    data.get(position).setBandD(false);
                 }
                 sortChannels();
             }
@@ -276,6 +302,7 @@ public class RVPilotAdapter extends RecyclerView.Adapter<RVPilotAdapter.PilotVie
                     data.get(position).setBandF(freq != null && Band.BAND_F.equals(freq.getBand()));
                     data.get(position).setBandR(freq != null && Band.BAND_R.equals(freq.getBand()));
                     data.get(position).setBandD(freq != null && Band.BAND_L.equals(freq.getBand()));
+                    data.get(position).setBandDJI(freq != null && Band.BAND_DJI.equals(freq.getBand()));
                     data.get(position).setFixedChannel(freq != null ? freq.getChannel() : 1);
                 }
 

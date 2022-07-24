@@ -26,6 +26,9 @@
     <string name="help_5">-Save and load Configurations from the menu</string>
     <string name="help_6">-Set the Frequency range from the menu</string>
     <string name="help_7">-IMD can be turned on and of in the Frequency range menu</string>
+    <string name="note_1">Note:</string>
+    <string name="note_2">Only supports DJI 25 Mbps mode with 8 channels.</string>
+    <string name="note_3">HDZero shares Raceband 1–8 and (*)Fatshark 2 and 4.</string>
 
     <string name="about_text">The App is completely free! If you want to contribute your ideas please write an email to:</string>
     <string name="email">felixfflesch@gmail.com</string>

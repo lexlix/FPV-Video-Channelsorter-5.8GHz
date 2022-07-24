@@ -75,13 +75,22 @@
                 android:layout_alignStart="@+id/cbF" />
 
             <CheckBox
+                android:id="@+id/cbD"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Band L"
-                android:id="@+id/cbD"
-                android:layout_below="@+id/cbR"
+                android:layout_below="@+id/cbDJI"
+                android:layout_alignStart="@+id/cbR"
                 android:layout_alignLeft="@+id/cbR"
-                android:layout_alignStart="@+id/cbR" />
+                android:text="Band L" />
+
+            <CheckBox
+                android:id="@+id/cbDJI"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cbR"
+                android:layout_alignStart="@+id/cbR"
+                android:layout_alignLeft="@+id/cbR"
+                android:text="Band DJI 25 Mbps" />
 
             <TextView
                 android:layout_width="wrap_content"

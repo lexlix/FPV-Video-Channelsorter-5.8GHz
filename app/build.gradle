@@ -6,8 +6,8 @@ android {
         applicationId "florian.felix.flesch.fpvvideochannelsorter"
         minSdkVersion 16
         targetSdkVersion 32
-        versionCode 24
-        versionName "2.2.5"
+        versionCode 25
+        versionName '2.3.0'
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
     buildTypes {
@@ -21,7 +21,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.4.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     implementation 'androidx.appcompat:appcompat:1.4.2'

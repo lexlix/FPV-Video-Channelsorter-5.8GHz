@@ -153,8 +153,8 @@ public class MainActivity extends AppCompatActivity implements NumberPicker.OnVa
         rvPilots.addOnItemTouchListener(swipeTouchListener);
 
         this.pilots = new ArrayList<>();
-        Pilot pilot1 = new Pilot(0,"Pilot 1", false, false, false, false, false, false, 5362, 5945);
-        Pilot pilot2 = new Pilot(1, "Pilot 2", false, false, false, false, false, false, 5362, 5945);
+        Pilot pilot1 = new Pilot(0,"Pilot 1", false, false, false, false, false, false, false, 5362, 5945);
+        Pilot pilot2 = new Pilot(1, "Pilot 2", false, false, false, false, false, false, false,5362, 5945);
         this.pilots.add(pilot1);
         this.pilots.add(pilot2);
 
@@ -168,7 +168,7 @@ public class MainActivity extends AppCompatActivity implements NumberPicker.OnVa
 			this.pilots = rvPilotAdapter.getData();
             int oldPilotSize = this.pilots.size();
             for(int i=0; i<pilotCount-oldPilotSize; i++) {
-                Pilot pilot = new Pilot(pilotCount-1, getNewPilotName(), false, false, false, false, false, false, rvPilotAdapter.getMinFrequency(), rvPilotAdapter.getMaxFrequency());
+                Pilot pilot = new Pilot(pilotCount-1, getNewPilotName(), false, false, false, false, false, false, false, rvPilotAdapter.getMinFrequency(), rvPilotAdapter.getMaxFrequency());
                 this.pilots.add(pilot);
 				this.rvPilotAdapter.setData(pilots, rvPilotAdapter.getMinFrequency(), rvPilotAdapter.getMaxFrequency(), rvPilotAdapter.isConsiderIMD());
                 this.rvPilotAdapter.notifyDataSetChanged();

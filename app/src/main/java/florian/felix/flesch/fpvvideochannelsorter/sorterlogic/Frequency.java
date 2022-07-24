@@ -35,6 +35,7 @@ public class Frequency
     public static int[] BandE = {5705, 5685, 5665, 5645, 5885, 5905, 5925, 5945}; //Boscam, Hobbyking, Foxtech
     public static int[] BandF = {5740, 5760, 5780, 5800, 5820, 5840, 5860, 5880}; //FatShark, Immersion
     public static int[] BandR = {5658, 5695, 5732, 5769, 5806, 5843, 5880, 5917}; //RaceBand
+    public static int[] BandDJI = {5660, 5695, 5735, 5770, 5805, 5878, 5914, 5839}; //DJI
     public static int[] BandL = {5362, 5399, 5436, 5473, 5510, 5547, 5584, 5621}; //LowBand
 
 	/**
@@ -62,6 +63,9 @@ public class Frequency
 		else if(band == Band.BAND_L) {
 			this.frequency = BandL[channel -1];
 		}
+        else if(band == Band.BAND_DJI) {
+            this.frequency = BandDJI[channel -1];
+        }
         this.band = band;
         this.channel = channel;
     }
@@ -83,22 +87,25 @@ public class Frequency
 
     public String getBandString() {
         if(this.band == Band.BAND_A) {
-            return "Band A";
+            return "A";
         }
         else if(this.band == Band.BAND_B) {
-            return "Band B";
+            return "B";
         }
         else if(this.band == Band.BAND_E) {
-            return "Band E";
+            return "E";
         }
         else if(this.band == Band.BAND_F) {
-            return "Band F";
+            return "F";
         }
         else if(this.band == Band.BAND_R) {
-            return "Band R";
+            return "R";
+        }
+        else if(this.band == Band.BAND_DJI) {
+            return "DJI 25mbit";
         }
 
-        return "Band L";
+        return "L";
     }
 
     @Override

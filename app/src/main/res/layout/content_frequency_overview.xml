@@ -14,6 +14,36 @@
     tools:showIn="@layout/activity_frequency_overview">
 
     <TextView
+        android:id="@+id/tv_overview_banddji"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_overview_values_r"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="20dp"
+        android:text="Band DJI"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/tv_overview_values_dji"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_overview_banddji"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:text="xxxx - xxxx - xxxx - xxxx - xxxx - xxxx - xxxx - xxxx" />
+
+    <TextView
+        android:id="@+id/tv_overview_names_dji"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tv_overview_banddji"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@id/tv_overview_banddji"
+        android:text="25mbit" />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -24,15 +54,14 @@
         android:layout_alignParentStart="true" />
 
     <TextView
+        android:id="@+id/tv_overview_names_a"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="FlyCamOne USA"
-        android:id="@+id/tv_overview_names_a"
         android:layout_alignBaseline="@+id/tv_overview_banda"
-        android:layout_alignBottom="@+id/tv_overview_banda"
-        android:layout_toRightOf="@+id/tv_overview_banda"
-        android:layout_toEndOf="@+id/tv_overview_banda"
-        android:layout_marginLeft="15dp" />
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@id/tv_overview_banddji"
+        android:text="FlyCamOne USA" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -55,15 +84,14 @@
         android:layout_marginTop="20dp" />
 
     <TextView
+        android:id="@+id/tv_overview_names_b"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="FlyCamOne Europe"
-        android:id="@+id/tv_overview_names_b"
         android:layout_alignBaseline="@+id/tv_overview_bandb"
-        android:layout_alignBottom="@+id/tv_overview_banda"
-        android:layout_toRightOf="@+id/tv_overview_banda"
-        android:layout_toEndOf="@+id/tv_overview_banda"
-        android:layout_marginLeft="15dp" />
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@id/tv_overview_banddji"
+        android:text="FlyCamOne Europe" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -86,106 +114,137 @@
         android:layout_marginTop="20dp" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Boscam, Hobbyking, Foxtech"
         android:id="@+id/tv_overview_names_e"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/tv_overview_bande"
-        android:layout_alignBottom="@+id/tv_overview_banda"
-        android:layout_toRightOf="@+id/tv_overview_banda"
-        android:layout_toEndOf="@+id/tv_overview_banda"
-        android:layout_marginLeft="15dp" />
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@id/tv_overview_banddji"
+        android:text="Boscam, Hobbyking, Foxtech" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="5705 - 5685 - 5665 - 5645 - 5885 - 5905 - 5925 - 5945"
         android:id="@+id/tv_overview_values_e"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/tv_overview_bande"
+        android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:text="5705 - 5685 - 5665 - 5645 - 5885 - 5905 - 5925 - 5945" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Boscam, Hobbyking, Foxtech"
         android:id="@+id/tv_overview_names_f"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/tv_overview_bandf"
-        android:layout_alignBottom="@+id/tv_overview_banda"
-        android:layout_toRightOf="@+id/tv_overview_banda"
-        android:layout_toEndOf="@+id/tv_overview_banda"
-        android:layout_marginLeft="15dp" />
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@id/tv_overview_banddji"
+        android:text="Boscam, Hobbyking, Foxtech, HDZero*" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="5733 - 5752 - 5771 - 5790 - 5809 - 5828 - 5747 - 5866"
         android:id="@+id/tv_overview_values_f"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/tv_overview_bandf"
+        android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:text="5733 - 5752 - 5771 - 5790 - 5809 - 5828 - 5747 - 5866" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Band R"
         android:id="@+id/tv_overview_bandr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/tv_overview_values_f"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="20dp" />
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="20dp"
+        android:text="Band R"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Raceband Immersion"
         android:id="@+id/tv_overview_names_r"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/tv_overview_bandr"
-        android:layout_alignBottom="@+id/tv_overview_banda"
-        android:layout_toRightOf="@+id/tv_overview_banda"
-        android:layout_toEndOf="@+id/tv_overview_banda"
-        android:layout_marginLeft="15dp" />
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@id/tv_overview_banddji"
+        android:text="Raceband Immersion, HDZero" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="5658 - 5695 - 5732 - 5769 - 5806 - 5843 - 5880 - 5917"
         android:id="@+id/tv_overview_values_r"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/tv_overview_bandr"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Band L"
-        android:id="@+id/tv_overview_bandd"
-        android:layout_below="@+id/tv_overview_values_r"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="20dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Low Band"
-        android:id="@+id/tv_overview_names_d"
-        android:layout_alignBaseline="@+id/tv_overview_bandd"
-        android:layout_alignBottom="@+id/tv_overview_banda"
-        android:layout_toRightOf="@+id/tv_overview_banda"
-        android:layout_toEndOf="@+id/tv_overview_banda"
-        android:layout_marginLeft="15dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="xxxx - xxxx - xxxx - xxxx - xxxx - xxxx - xxxx - xxxx"
-        android:id="@+id/tv_overview_values_d"
-        android:layout_below="@+id/tv_overview_bandd"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:text="5658 - 5695 - 5732 - 5769 - 5806 - 5843 - 5880 - 5917" />
+
+    <TextView
+        android:id="@+id/tv_overview_values_rhdz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_overview_values_f"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="-18dp"
+        android:text="            _____               _____" />
+
+    <TextView
+        android:id="@+id/tv_overview_bandd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_overview_values_dji"
+        android:layout_marginTop="20dp"
+        android:text="Band L"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/tv_note2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_note1"
+        android:text="@string/note_2"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_note3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_note2"
+        android:text="@string/note_3"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_note1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_overview_values_d"
+        android:layout_marginTop="20dp"
+        android:text="@string/note_1"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_overview_names_d"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tv_overview_bandd"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@id/tv_overview_banddji"
+        android:text="Low Band" />
+
+    <TextView
+        android:id="@+id/tv_overview_values_d"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_overview_bandd"
+         android:text="xxxx - xxxx - xxxx - xxxx - xxxx - xxxx - xxxx - xxxx" />
 
     <TextView
         android:layout_width="wrap_content"

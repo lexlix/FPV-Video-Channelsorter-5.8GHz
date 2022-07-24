@@ -59,13 +59,13 @@
         android:layout_centerHorizontal="true"/>
 
     <TextView
+        android:id="@+id/tv_about_version"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_about_version"
-        android:text="Version x.x.x"
         android:layout_above="@+id/tv_about_madeby"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="5dp"/>
+        android:layout_marginBottom="5dp"
+        android:text="Version x.x.x" />
 
     <TextView android:text="Made by Felix-Florian Flesch" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -114,17 +114,26 @@
         android:layout_centerHorizontal="true"
         android:gravity="center_horizontal"
         android:paddingTop="5dp"
-        android:text="@string/richard_bartelt"/>
+        android:text="@string/richard_bartelt" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView9"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:paddingTop="5dp"
+        android:text="@string/manuel_vogel" />
 
     <TextView
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView9"
+        android:layout_below="@+id/textView6"
         android:layout_centerHorizontal="true"
-        android:paddingTop="30dp"
         android:text="@string/imd_info"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textView11"

@@ -90,7 +90,7 @@
                 android:layout_below="@+id/cbR"
                 android:layout_alignStart="@+id/cbR"
                 android:layout_alignLeft="@+id/cbR"
-                android:text="Band DJI25" />
+                android:text="Band DJI 25 Mbps" />
 
             <TextView
                 android:layout_width="wrap_content"

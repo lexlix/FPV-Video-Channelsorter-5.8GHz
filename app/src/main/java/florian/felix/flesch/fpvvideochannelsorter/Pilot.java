@@ -123,6 +123,7 @@ public class Pilot
     public boolean getBandD() {
         return this.bandD;
     }
+
     public boolean getBandDJI() {
         return this.bandDJI;
     }

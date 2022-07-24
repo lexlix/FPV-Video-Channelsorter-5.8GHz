@@ -46,7 +46,7 @@
     <string name="imd_info">"Mehr infos über IMD gibt es hier:"</string>
     <string name="open_source">oder besuche Github um am open source code zu arbeiten:</string>
     <string name="note_1">Hinweis:</string>
-    <string name="note_2">Unterstützt DJI nur im 25mbit Modus.</string>
-    <string name="note_3">HDZero teilt sich das Raceband 1-8 sowie (*)Fatshark 2, 4.</string>
+    <string name="note_2">Unterstützt DJI nur im 25 Mbps Modus mit 8 Kanälen.</string>
+    <string name="note_3">HDZero teilt sich das Raceband 1–8 sowie (*)Fatshark 2, 4.</string>
 
 </resources>

@@ -41,7 +41,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:layout_toRightOf="@id/tv_overview_banddji"
-        android:text="25mbit" />
+        android:text="25 Mbps" />
 
     <TextView
         android:layout_width="wrap_content"

@@ -102,7 +102,7 @@ public class Frequency
             return "R";
         }
         else if(this.band == Band.BAND_DJI) {
-            return "DJI 25mbit";
+            return "DJI 25 Mbps";
         }
 
         return "L";

@@ -3,15 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/mvoge/Documents/GitHub/FPV-Video-Channelsorter-5.8GHz/app/src/main/res/layout/activity_about.xml" value="0.22554347826086957" />
-        <entry key="..\:/Users/mvoge/Documents/GitHub/FPV-Video-Channelsorter-5.8GHz/app/src/main/res/layout/activity_frequency_overview.xml" value="0.5" />
-        <entry key="..\:/Users/mvoge/Documents/GitHub/FPV-Video-Channelsorter-5.8GHz/app/src/main/res/layout/content_about.xml" value="0.28532608695652173" />
-        <entry key="..\:/Users/mvoge/Documents/GitHub/FPV-Video-Channelsorter-5.8GHz/app/src/main/res/layout/content_frequency_overview.xml" value="0.28804347826086957" />
-        <entry key="..\:/Users/mvoge/Documents/GitHub/FPV-Video-Channelsorter-5.8GHz/app/src/main/res/layout/content_load_configuration.xml" value="0.28532608695652173" />
-        <entry key="..\:/Users/mvoge/Documents/GitHub/FPV-Video-Channelsorter-5.8GHz/app/src/main/res/layout/content_main.xml" value="0.28532608695652173" />
-        <entry key="..\:/Users/mvoge/Documents/GitHub/FPV-Video-Channelsorter-5.8GHz/app/src/main/res/layout/dialog_frequency_range.xml" value="0.28532608695652173" />
-        <entry key="..\:/Users/mvoge/Documents/GitHub/FPV-Video-Channelsorter-5.8GHz/app/src/main/res/layout/view_pilot.xml" value="0.28532608695652173" />
-        <entry key="..\:/Users/mvoge/Documents/GitHub/FPV-Video-Channelsorter-5.8GHz/app/src/main/res/menu/menu_main.xml" value="0.3625" />
+        <entry key="app/src/main/res/layout/activity_about.xml" value="0.3484375" />
+        <entry key="app/src/main/res/layout/content_about.xml" value="0.3484375" />
+        <entry key="app/src/main/res/layout/content_frequency_overview.xml" value="0.3484375" />
+        <entry key="app/src/main/res/layout/view_pilot.xml" value="0.3484375" />
       </map>
     </option>
   </component>

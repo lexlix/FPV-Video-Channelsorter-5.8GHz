@@ -6,8 +6,8 @@ android {
         applicationId "florian.felix.flesch.fpvvideochannelsorter"
         minSdkVersion 16
         targetSdkVersion 32
-        versionCode 24
-        versionName '2.2.6'
+        versionCode 25
+        versionName '2.3.0'
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
     buildTypes {

@@ -82,30 +82,30 @@ public class RVPilotAdapter extends RecyclerView.Adapter<RVPilotAdapter.PilotVie
 
         public PilotViewHolder(View itemView){
             super(itemView);
-            this.cv = (CardView)itemView.findViewById(R.id.cvPilot);
-            this.name = (TextView)itemView.findViewById(R.id.tvPilotnumber);
-            this.cbA = (CheckBox)itemView.findViewById(R.id.cbA);
-            this.cbB = (CheckBox)itemView.findViewById(R.id.cbB);
-            this.cbE = (CheckBox)itemView.findViewById(R.id.cbE);
-            this.cbF = (CheckBox)itemView.findViewById(R.id.cbF);
-            this.cbR = (CheckBox)itemView.findViewById(R.id.cbR);
-            this.cbD = (CheckBox)itemView.findViewById(R.id.cbD);
-            this.swFixed = (Switch)itemView.findViewById(R.id.sw_pilot_fixed);
-            this.spChannel = (Spinner)itemView.findViewById(R.id.sp_pilot_channel);
+            this.cv = itemView.findViewById(R.id.cvPilot);
+            this.name = itemView.findViewById(R.id.tvPilotnumber);
+            this.cbA = itemView.findViewById(R.id.cbA);
+            this.cbB = itemView.findViewById(R.id.cbB);
+            this.cbE = itemView.findViewById(R.id.cbE);
+            this.cbF = itemView.findViewById(R.id.cbF);
+            this.cbR = itemView.findViewById(R.id.cbR);
+            this.cbD = itemView.findViewById(R.id.cbD);
+            this.swFixed = itemView.findViewById(R.id.sw_pilot_fixed);
+            this.spChannel = itemView.findViewById(R.id.sp_pilot_channel);
             ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(itemView.getContext(), R.array.channels_array, android.R.layout.simple_spinner_item);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spChannel.setAdapter(adapter);
-            this.tvspChannel = (TextView)itemView.findViewById(R.id.tv_pilot_channel);
-            this.tvBand = (TextView)itemView.findViewById(R.id.tvBand);
-            this.tvChannel = (TextView)itemView.findViewById(R.id.tvChannel);
-            this.tvFrequency = (TextView)itemView.findViewById(R.id.tvFrequency);
+            this.tvspChannel = itemView.findViewById(R.id.tv_pilot_channel);
+            this.tvBand = itemView.findViewById(R.id.tvBand);
+            this.tvChannel = itemView.findViewById(R.id.tvChannel);
+            this.tvFrequency = itemView.findViewById(R.id.tvFrequency);
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
     public RVPilotAdapter(ArrayList<Pilot> pilots, int minFrequency, int maxFrequency, boolean considerIMD, TextView tvMinDif, TextView tvMaxDif, TextView tvIMD, ProgressBar pbSorter)
     {
-        this.data = pilots;
+        data = pilots;
 		this.minFrequency = minFrequency;
 		this.maxFrequency = maxFrequency;
         this.considerIMD = considerIMD;
@@ -124,16 +124,16 @@ public class RVPilotAdapter extends RecyclerView.Adapter<RVPilotAdapter.PilotVie
 
     @Override
     public void onBindViewHolder(final PilotViewHolder holder, final int position) {
-        holder.name.setText(this.data.get(position).getName());
-        holder.cbA.setChecked(this.data.get(position).getBandA());
-        holder.cbB.setChecked(this.data.get(position).getBandB());
-        holder.cbE.setChecked(this.data.get(position).getBandE());
-        holder.cbF.setChecked(this.data.get(position).getBandF());
-        holder.cbR.setChecked(this.data.get(position).getBandR());
-        holder.cbD.setChecked(this.data.get(position).getBandD());
-        holder.swFixed.setChecked(this.data.get(position).isFixed());
-        holder.spChannel.setSelection(this.data.get(position).getFixedChannel()-1);
-        if(this.data.get(position).isFixed()) {
+        holder.name.setText(data.get(position).getName());
+        holder.cbA.setChecked(data.get(position).getBandA());
+        holder.cbB.setChecked(data.get(position).getBandB());
+        holder.cbE.setChecked(data.get(position).getBandE());
+        holder.cbF.setChecked(data.get(position).getBandF());
+        holder.cbR.setChecked(data.get(position).getBandR());
+        holder.cbD.setChecked(data.get(position).getBandD());
+        holder.swFixed.setChecked(data.get(position).isFixed());
+        holder.spChannel.setSelection(data.get(position).getFixedChannel()-1);
+        if(data.get(position).isFixed()) {
             holder.tvspChannel.setVisibility(View.VISIBLE);
             holder.spChannel.setVisibility(View.VISIBLE);
         }
@@ -142,16 +142,15 @@ public class RVPilotAdapter extends RecyclerView.Adapter<RVPilotAdapter.PilotVie
             holder.spChannel.setVisibility(View.GONE);
         }
 
-		System.out.println(this.data.get(position).getFrequency());
-		if(this.data.get(position).getFrequency() == null) {
+		if(data.get(position).getFrequency() == null) {
 			holder.tvBand.setText("-");
 			holder.tvChannel.setText("-");
 			holder.tvFrequency.setText("-");
 		}
 		else {
-			holder.tvBand.setText(this.data.get(position).getFrequency().getBandString());
-			holder.tvChannel.setText(this.data.get(position).getFrequency().getChannel() + "");
-			holder.tvFrequency.setText(this.data.get(position).getFrequency().getFrequenz() + "");
+			holder.tvBand.setText(data.get(position).getFrequency().getBandString());
+			holder.tvChannel.setText(data.get(position).getFrequency().getChannel() + "");
+			holder.tvFrequency.setText(data.get(position).getFrequency().getFrequenz() + "");
 		}
 
         final CheckBox fcbA = holder.cbA;
@@ -318,7 +317,7 @@ public class RVPilotAdapter extends RecyclerView.Adapter<RVPilotAdapter.PilotVie
 
     @Override
     public int getItemCount() {
-        return this.data.size();
+        return data.size();
     }
 
     @Override
@@ -414,7 +413,7 @@ public class RVPilotAdapter extends RecyclerView.Adapter<RVPilotAdapter.PilotVie
 
     private void resetChannels()
     {
-        for(int i=0; i<this.data.size(); i++)
+        for(int i = 0; i< data.size(); i++)
         {
             data.get(i).setFrequency(null);
         }

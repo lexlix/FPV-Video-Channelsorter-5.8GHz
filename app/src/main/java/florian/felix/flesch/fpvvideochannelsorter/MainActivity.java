@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements NumberPicker.OnVa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
 		SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -103,22 +103,19 @@ public class MainActivity extends AppCompatActivity implements NumberPicker.OnVa
 			prefsEditor.apply();
 		}
 
-        this.btnAddPilot = (Button) findViewById(R.id.btnAddPilot);
-        this.btnAddPilot.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(pilots.size() == 7) {
-                    btnAddPilot.setVisibility(View.GONE);
-                }
-                updatePilotCount(pilots.size() + 1);
-            }
-        });
+        this.btnAddPilot = findViewById(R.id.btnAddPilot);
+        this.btnAddPilot.setOnClickListener(v -> {
+			if(pilots.size() == 7) {
+				btnAddPilot.setVisibility(View.GONE);
+			}
+			updatePilotCount(pilots.size() + 1);
+		});
 
         this.rvPilots = (RecyclerView) findViewById(R.id.rvPilots);
         this.rvPilots.setHasFixedSize(true); //improves performance
 
-        this.layoutManager = new LinearLayoutManager(this);
-        rvPilots.setLayoutManager(this.layoutManager);
+        layoutManager = new LinearLayoutManager(this);
+        rvPilots.setLayoutManager(layoutManager);
 
         SwipeableRecyclerViewTouchListener swipeTouchListener =
                 new SwipeableRecyclerViewTouchListener(rvPilots,

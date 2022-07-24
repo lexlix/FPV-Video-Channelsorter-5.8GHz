@@ -59,22 +59,12 @@ public class Sorter {
             finalSolution = recursion(remainingP, newSolution, finalSolution, getMinDisCoeff(finalSolution, considerIMD), considerIMD);
         }
 
-
-        /*for(int i=0; i<finalSolution.size(); i++) {
-            System.out.println(finalSolution.get(i).getFrequency());
-        }
-        int[] minDis = getMinDisVector(finalSolution);
-        System.out.println("MinDis: " + minDis[0]);
-        System.out.println("MinDisIMD: " + minDis[1]);
-        System.out.println("IMDRating: " + minDis[2]);*/
-
         return finalSolution;
     }
 
     private static ArrayList<Pilot> recursion(ArrayList<Pilot> remainingP, ArrayList<Pilot> newSolution, ArrayList<Pilot> solution, int minDis, boolean considerIMD) {
-        for(int i=remainingP.get(0).getAvailableFrequencies().size()-1; 0<=i; i--) { //go throu each remaindingP.get(0) elements
-            ArrayList<Pilot> newSolutionCopy = new ArrayList<>();
-            newSolutionCopy.addAll(newSolution);
+        for(int i=remainingP.get(0).getAvailableFrequencies().size()-1; 0<=i; i--) { //go through each remaining P.get(0) elements
+            ArrayList<Pilot> newSolutionCopy = new ArrayList<>(newSolution);
 
             Pilot p = remainingP.get(0).getCopy();
             p.setFrequency(p.getAvailableFrequencies().get(i));

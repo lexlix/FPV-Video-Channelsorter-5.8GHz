@@ -44,6 +44,7 @@ public class Pilot
     private boolean bandD;
     private Frequency frequency = null;
     ArrayList<Frequency> availableFrequencies;
+    private boolean settingsChanged;
     int minFreq;
     int maxFreq;
 
@@ -72,7 +73,7 @@ public class Pilot
         this.minFreq = minFreq;
         this.maxFreq = maxFreq;
 
-        calculateAvailableFrequencies();
+        this.settingsChanged = true;
     }
 
     public int getNumber() {
@@ -134,42 +135,56 @@ public class Pilot
 
     public void setBandA(boolean bandA)
     {
+        if (this.bandA != bandA) {
+            this.settingsChanged = true;
+        }
         this.bandA = bandA;
-        calculateAvailableFrequencies();
     }
 
     public void setBandB(boolean bandB)
     {
+        if (this.bandB != bandB) {
+            this.settingsChanged = true;
+        }
         this.bandB = bandB;
-        calculateAvailableFrequencies();
     }
 
     public void setBandE(boolean bandE)
     {
+        if (this.bandE != bandE) {
+            this.settingsChanged = true;
+        }
         this.bandE = bandE;
-        calculateAvailableFrequencies();
     }
 
     public void setBandF(boolean bandF)
     {
+        if (this.bandF != bandF) {
+            this.settingsChanged = true;
+        }
         this.bandF = bandF;
-        calculateAvailableFrequencies();
     }
 
     public void setBandR(boolean bandR)
     {
+        if (this.bandR != bandR) {
+            this.settingsChanged = true;
+        }
         this.bandR = bandR;
-        calculateAvailableFrequencies();
     }
 
     public void setBandD(boolean bandD) {
+        if (this.bandD != bandD) {
+            this.settingsChanged = true;
+        }
         this.bandD = bandD;
-        calculateAvailableFrequencies();
     }
 
     public void setFixed(boolean fixed) {
+        if (this.fixed != fixed) {
+            this.settingsChanged = true;
+        }
         this.fixed = fixed;
-        calculateAvailableFrequencies();
     }
 
     /**
@@ -187,73 +202,73 @@ public class Pilot
 
 
     /**
-     * Calculate the avaibable frequencies only when they are changed to save time
+     * Calculate the available frequencies only when they are changed to save time
      */
     private void calculateAvailableFrequencies() {
         ArrayList<Frequency> frequencies = new ArrayList();
 
-        if(!this.isSet()){
-            this.availableFrequencies = frequencies;
-        } else if(this.fixed) {
-            if(this.bandA) {
-                frequencies.add(new Frequency(Band.BAND_A, this.fixedChannel));
-            }
-            if(this.bandB) {
-                frequencies.add(new Frequency(Band.BAND_B, this.fixedChannel));
-            }
-            if(this.bandE) {
-                frequencies.add(new Frequency(Band.BAND_E, this.fixedChannel));
-            }
-            if(this.bandF) {
-                frequencies.add(new Frequency(Band.BAND_F, this.fixedChannel));
-            }
-            if(this.bandR) {
-                frequencies.add(new Frequency(Band.BAND_R, this.fixedChannel));
-            }
-            if(this.bandD) {
-                frequencies.add(new Frequency(Band.BAND_L, this.fixedChannel));
-            }
-        }
-        else {
-            if(this.bandA) {
-                for(int i=1; i<9; i++) {
-                    if(Frequency.BandA[i-1] >= this.minFreq && Frequency.BandA[i-1] <= this.maxFreq) {
-                        frequencies.add(new Frequency(Band.BAND_A, i));
-                    }
+        if(this.isSet()) {
+            if(this.fixed) {
+                if(this.bandA) {
+                    frequencies.add(new Frequency(Band.BAND_A, this.fixedChannel));
+                }
+                if(this.bandB) {
+                    frequencies.add(new Frequency(Band.BAND_B, this.fixedChannel));
+                }
+                if(this.bandE) {
+                    frequencies.add(new Frequency(Band.BAND_E, this.fixedChannel));
+                }
+                if(this.bandF) {
+                    frequencies.add(new Frequency(Band.BAND_F, this.fixedChannel));
+                }
+                if(this.bandR) {
+                    frequencies.add(new Frequency(Band.BAND_R, this.fixedChannel));
+                }
+                if(this.bandD) {
+                    frequencies.add(new Frequency(Band.BAND_L, this.fixedChannel));
                 }
             }
-            if(this.bandB) {
-                for(int i=1; i<9; i++) {
-                    if(Frequency.BandB[i-1] >= this.minFreq && Frequency.BandB[i-1] <= this.maxFreq) {
-                        frequencies.add(new Frequency(Band.BAND_B, i));
+            else {
+                if(this.bandA) {
+                    for(int i=1; i<9; i++) {
+                        if(Frequency.BandA[i-1] >= this.minFreq && Frequency.BandA[i-1] <= this.maxFreq) {
+                            frequencies.add(new Frequency(Band.BAND_A, i));
+                        }
                     }
                 }
-            }
-            if(this.bandE) {
-                for(int i=1; i<9; i++) {
-                    if(Frequency.BandE[i-1] >= this.minFreq && Frequency.BandE[i-1] <= this.maxFreq) {
-                        frequencies.add(new Frequency(Band.BAND_E, i));
+                if(this.bandB) {
+                    for(int i=1; i<9; i++) {
+                        if(Frequency.BandB[i-1] >= this.minFreq && Frequency.BandB[i-1] <= this.maxFreq) {
+                            frequencies.add(new Frequency(Band.BAND_B, i));
+                        }
                     }
                 }
-            }
-            if(this.bandF) {
-                for(int i=1; i<9; i++) {
-                    if(Frequency.BandF[i-1] >= this.minFreq && Frequency.BandF[i-1] <= this.maxFreq) {
-                        frequencies.add(new Frequency(Band.BAND_F, i));
+                if(this.bandE) {
+                    for(int i=1; i<9; i++) {
+                        if(Frequency.BandE[i-1] >= this.minFreq && Frequency.BandE[i-1] <= this.maxFreq) {
+                            frequencies.add(new Frequency(Band.BAND_E, i));
+                        }
                     }
                 }
-            }
-            if(this.bandR) {
-                for(int i=1; i<9; i++) {
-                    if(Frequency.BandR[i-1] >= this.minFreq && Frequency.BandR[i-1] <= this.maxFreq) {
-                        frequencies.add(new Frequency(Band.BAND_R, i));
+                if(this.bandF) {
+                    for(int i=1; i<9; i++) {
+                        if(Frequency.BandF[i-1] >= this.minFreq && Frequency.BandF[i-1] <= this.maxFreq) {
+                            frequencies.add(new Frequency(Band.BAND_F, i));
+                        }
                     }
                 }
-            }
-            if(this.bandD) {
-                for(int i=1; i<9; i++) {
-                    if(Frequency.BandL[i-1] >= this.minFreq && Frequency.BandL[i-1] <= this.maxFreq) {
-                        frequencies.add(new Frequency(Band.BAND_L, i));
+                if(this.bandR) {
+                    for(int i=1; i<9; i++) {
+                        if(Frequency.BandR[i-1] >= this.minFreq && Frequency.BandR[i-1] <= this.maxFreq) {
+                            frequencies.add(new Frequency(Band.BAND_R, i));
+                        }
+                    }
+                }
+                if(this.bandD) {
+                    for(int i=1; i<9; i++) {
+                        if(Frequency.BandL[i-1] >= this.minFreq && Frequency.BandL[i-1] <= this.maxFreq) {
+                            frequencies.add(new Frequency(Band.BAND_L, i));
+                        }
                     }
                 }
             }
@@ -266,8 +281,11 @@ public class Pilot
      *
      * @return a list of the available frequencies for this pilot
      */
-    public ArrayList<Frequency> getAvailableFrequencies() //TODO speed up with only calculating when a band is changed ang retuning a calculated value
-    {
+    public ArrayList<Frequency> getAvailableFrequencies() {
+        if (this.settingsChanged) {
+            this.calculateAvailableFrequencies();
+            this.settingsChanged = false;
+        }
         return this.availableFrequencies;
     }
 

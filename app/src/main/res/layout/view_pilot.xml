@@ -166,21 +166,41 @@
                 android:layout_marginRight="5dp" />
 
             <Spinner
+                android:id="@+id/sp_pilot_channel_7"
+                style="@style/Widget.AppCompat.Spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/sp_pilot_channel"
-                android:layout_alignTop="@+id/tvChannel"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignLeft="@+id/sw_pilot_fixed"
                 android:layout_alignStart="@+id/sw_pilot_fixed"
-                style="@style/Widget.AppCompat.Spinner" />
+                android:layout_alignLeft="@+id/sw_pilot_fixed"
+                android:layout_alignTop="@+id/tvChannel"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true" />
+
+            <Spinner
+                android:id="@+id/sp_pilot_channel_8"
+                style="@style/Widget.AppCompat.Spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/sw_pilot_fixed"
+                android:layout_alignLeft="@+id/sw_pilot_fixed"
+                android:layout_alignTop="@+id/tvChannel"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true" />
 
             <TextView
                 android:text="@string/channel"
                 android:layout_width="wrap_content"
-                android:id="@+id/tv_pilot_channel"
-                android:layout_above="@+id/sp_pilot_channel"
+                android:id="@+id/tv_pilot_channel_7"
+                android:layout_above="@+id/sp_pilot_channel_7"
+                android:layout_alignLeft="@+id/sw_pilot_fixed"
+                android:layout_alignStart="@+id/sw_pilot_fixed"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:text="@string/channel"
+                android:layout_width="wrap_content"
+                android:id="@+id/tv_pilot_channel_8"
+                android:layout_above="@+id/sp_pilot_channel_8"
                 android:layout_alignLeft="@+id/sw_pilot_fixed"
                 android:layout_alignStart="@+id/sw_pilot_fixed"
                 android:layout_height="wrap_content" />

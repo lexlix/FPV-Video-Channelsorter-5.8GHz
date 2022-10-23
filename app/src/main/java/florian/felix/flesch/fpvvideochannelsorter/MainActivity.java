@@ -49,6 +49,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements NumberPicker.OnValueChangeListener {
 
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements NumberPicker.OnVa
     private static RecyclerView.LayoutManager layoutManager;
     private Button btnAddPilot;
 
-    private ArrayList<Pilot> pilots;
+    private List<Pilot> pilots;
 
 	private static Configuration config = null;
 
@@ -241,7 +242,7 @@ public class MainActivity extends AppCompatActivity implements NumberPicker.OnVa
         if (id == R.id.action_save) {
 			final SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-			final ArrayList<Pilot> data = this.rvPilotAdapter.getData();
+			final List<Pilot> data = this.rvPilotAdapter.getData();
 
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setTitle(R.string.set_name_for_save);
@@ -384,7 +385,16 @@ public class MainActivity extends AppCompatActivity implements NumberPicker.OnVa
         if (id == R.id.action_help) {
 			AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 			builder.setTitle(R.string.help);
-			builder.setMessage(getString(R.string.help_1) + "\n\n" + getString(R.string.help_2) + "\n\n" + getString(R.string.help_3) + "\n\n" + getString(R.string.help_4) + "\n\n" + getString(R.string.help_5) + "\n\n" + getString(R.string.help_6) + "\n\n" + getString(R.string.help_7));
+			builder.setMessage(
+					getString(R.string.help_1) + "\n\n" +
+					getString(R.string.help_2) + "\n\n" +
+					getString(R.string.help_3) + "\n\n" +
+					getString(R.string.help_4) + "\n\n" +
+					getString(R.string.help_5) + "\n\n" +
+					getString(R.string.help_6) + "\n\n" +
+					getString(R.string.help_7) + "\n\n" +
+					getString(R.string.help_8) + "\n\n" +
+					getString(R.string.help_9));
 
 			builder.setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
 				@Override

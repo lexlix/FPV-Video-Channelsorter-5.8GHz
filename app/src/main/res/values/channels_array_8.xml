@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="channels_array" translatable="false">
+    <string-array name="channels_array_8" translatable="false">
         <item>1</item>
         <item>2</item>
         <item>3</item>

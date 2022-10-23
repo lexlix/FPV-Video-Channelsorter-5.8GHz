@@ -19,13 +19,15 @@
 
     <string name="close">Close</string>
 
-    <string name="help_1">-Select the bands for each pilot</string>
-    <string name="help_2">-Swipe left or right to delete a pilot</string>
-    <string name="help_3">-Select fixed to set a fixed frequency for a pilot</string>
-    <string name="help_4">-Tap the name of a pilot to change it</string>
-    <string name="help_5">-Save and load Configurations from the menu</string>
-    <string name="help_6">-Set the Frequency range from the menu</string>
-    <string name="help_7">-IMD can be turned on and of in the Frequency range menu</string>
+    <string name="help_1">• Select the bands for each pilot</string>
+    <string name="help_2">• Swipe left or right to delete a pilot</string>
+    <string name="help_3">• Select fixed to set a fixed frequency for a pilot</string>
+    <string name="help_4">• Tap the name of a pilot to change it</string>
+    <string name="help_5">• Save and load Configurations from the menu</string>
+    <string name="help_6">• Set the Frequency range from the menu</string>
+    <string name="help_7">• IMD can be turned on and of in the Frequency range menu</string>
+    <string name="help_8">• DJI Channel 8 is not selectable for fixed channel as it is the public channel</string>
+    <string name="help_9">• If a DJI pilot is present, DJI Channel 8 will be avoided for all frequency bands</string>
     <string name="note_1">Note:</string>
     <string name="note_2">Only supports DJI 25 Mbps mode with 8 channels.</string>
     <string name="note_3">HDZero shares Raceband 1–8 and (*)Fatshark 2 and 4.</string>

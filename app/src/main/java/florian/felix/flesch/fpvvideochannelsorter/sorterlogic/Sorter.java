@@ -24,7 +24,13 @@
 
 package florian.felix.flesch.fpvvideochannelsorter.sorterlogic;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import florian.felix.flesch.fpvvideochannelsorter.Pilot;
 
@@ -32,7 +38,33 @@ public class Sorter {
 
     private Sorter(){}
 
-    public static ArrayList<Pilot> sort(ArrayList<Pilot> pilots, boolean considerIMD) {
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static List<Pilot> sort(List<Pilot> pilots, boolean considerIMD) {
+
+        boolean djiIsUsed = false;
+
+        for (Pilot p: pilots) {
+            if (p.getBandDJI()) {
+                djiIsUsed = true;
+                break;
+            }
+        }
+
+        if (djiIsUsed) {
+            Pilot dummyDJIPublicChannelPilot = new Pilot(
+                    -1,
+                    "dummyDJIPublicChannel8",
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    true,
+                    Frequency.BandDJI[7],
+                    Frequency.BandDJI[7]);
+            pilots.add(dummyDJIPublicChannelPilot);
+        }
 
         ArrayList<Pilot> solution = new ArrayList<>();
 
@@ -47,7 +79,7 @@ public class Sorter {
             remainingP.add(pilots.get(i).getCopy());
         }
 
-        ArrayList<Pilot> finalSolution = solution;
+        List<Pilot> finalSolution = solution;
 
         for(int i=0; i<pilots.get(0).getAvailableFrequencies().size(); i++) {
 
@@ -59,10 +91,15 @@ public class Sorter {
             finalSolution = recursion(remainingP, newSolution, finalSolution, getMinDisCoeff(finalSolution, considerIMD), considerIMD);
         }
 
+        finalSolution = finalSolution
+                .stream()
+                .filter(p -> p.getNumber() != -1)
+                .collect(Collectors.toList());
+
         return finalSolution;
     }
 
-    private static ArrayList<Pilot> recursion(ArrayList<Pilot> remainingP, ArrayList<Pilot> newSolution, ArrayList<Pilot> solution, int minDis, boolean considerIMD) {
+    private static List<Pilot> recursion(List<Pilot> remainingP, List<Pilot> newSolution, List<Pilot> solution, int minDis, boolean considerIMD) {
         for(int i=remainingP.get(0).getAvailableFrequencies().size()-1; 0<=i; i--) { //go through each remaining P.get(0) elements
             ArrayList<Pilot> newSolutionCopy = new ArrayList<>(newSolution);
 
@@ -92,7 +129,7 @@ public class Sorter {
         return solution;
     }
 
-    public static int getMinDis(ArrayList<Pilot> solution) {
+    public static int getMinDis(List<Pilot> solution) {
         int minDis = Integer.MAX_VALUE;
 
         for(int i=0; i<solution.size(); i++) {
@@ -112,7 +149,7 @@ public class Sorter {
         return minDis;
     }
 
-    public static int getMaxDis(ArrayList<Pilot> solution) {
+    public static int getMaxDis(List<Pilot> solution) {
         int maxDis = Integer.MIN_VALUE;
 
         for(int i=0; i<solution.size(); i++) {
@@ -129,7 +166,7 @@ public class Sorter {
         return maxDis;
     }
 
-    public static int[] getMinDisVector(ArrayList<Pilot> solution) {
+    public static int[] getMinDisVector(List<Pilot> solution) {
         int[] vector = new int[] {Integer.MAX_VALUE, Integer.MAX_VALUE, 0};
         ArrayList<Integer> freqsIMD = new ArrayList<>(solution.size()*solution.size());
         for(int i=0; i<solution.size(); i++) {
@@ -160,7 +197,7 @@ public class Sorter {
         return vector;
     }
 
-    private static int getMinDisCoeff(ArrayList<Pilot> solution, boolean considerIMD) {
+    private static int getMinDisCoeff(List<Pilot> solution, boolean considerIMD) {
         if (considerIMD) {
             int[] vector = getMinDisVector(solution);
             return vector[0] + (1000*vector[1]);

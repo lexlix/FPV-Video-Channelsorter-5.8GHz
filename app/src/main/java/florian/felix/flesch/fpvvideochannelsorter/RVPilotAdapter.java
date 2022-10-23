@@ -43,6 +43,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import florian.felix.flesch.fpvvideochannelsorter.sorterlogic.Band;
 import florian.felix.flesch.fpvvideochannelsorter.sorterlogic.Frequency;
@@ -50,12 +51,12 @@ import florian.felix.flesch.fpvvideochannelsorter.sorterlogic.Sorter;
 
 public class RVPilotAdapter extends RecyclerView.Adapter<RVPilotAdapter.PilotViewHolder>
 {
-    static ArrayList<Pilot> data;
+    static List<Pilot> data;
     TextView tvMinDif;
     TextView tvMaxDif;
     TextView tvIMD;
 	ProgressBar pbSorter;
-	Calc currentClacThread;
+	Calc currentCalcThread;
 	private int minFrequency;
 	private int maxFrequency;
     private boolean considerIMD;
@@ -75,13 +76,15 @@ public class RVPilotAdapter extends RecyclerView.Adapter<RVPilotAdapter.PilotVie
         CheckBox cbD;
         CheckBox cbDJI;
         Switch swFixed;
-        Spinner spChannel;
-        TextView tvspChannel;
+        Spinner spChannel7;
+        Spinner spChannel8;
+        TextView tvspChannel7;
+        TextView tvspChannel8;
         TextView tvBand;
         TextView tvChannel;
         TextView tvFrequency;
 
-        public PilotViewHolder(View itemView){
+        public PilotViewHolder(final View itemView){
             super(itemView);
             this.cv = itemView.findViewById(R.id.cvPilot);
             this.name = itemView.findViewById(R.id.tvPilotnumber);
@@ -93,11 +96,16 @@ public class RVPilotAdapter extends RecyclerView.Adapter<RVPilotAdapter.PilotVie
             this.cbD = itemView.findViewById(R.id.cbD);
             this.cbDJI = itemView.findViewById(R.id.cbDJI);
             this.swFixed = itemView.findViewById(R.id.sw_pilot_fixed);
-            this.spChannel = itemView.findViewById(R.id.sp_pilot_channel);
-            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(itemView.getContext(), R.array.channels_array, android.R.layout.simple_spinner_item);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            spChannel.setAdapter(adapter);
-            this.tvspChannel = itemView.findViewById(R.id.tv_pilot_channel);
+            this.spChannel7 = itemView.findViewById(R.id.sp_pilot_channel_7);
+            ArrayAdapter<CharSequence> adapter7 = ArrayAdapter.createFromResource(itemView.getContext(), R.array.channels_array_7, android.R.layout.simple_spinner_item);
+            adapter7.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spChannel7.setAdapter(adapter7);
+            this.spChannel8 = itemView.findViewById(R.id.sp_pilot_channel_8);
+            ArrayAdapter<CharSequence> adapter8 = ArrayAdapter.createFromResource(itemView.getContext(), R.array.channels_array_8, android.R.layout.simple_spinner_item);
+            adapter8.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spChannel8.setAdapter(adapter8);
+            this.tvspChannel7 = itemView.findViewById(R.id.tv_pilot_channel_7);
+            this.tvspChannel8 = itemView.findViewById(R.id.tv_pilot_channel_8);
             this.tvBand = itemView.findViewById(R.id.tvBand);
             this.tvChannel = itemView.findViewById(R.id.tvChannel);
             this.tvFrequency = itemView.findViewById(R.id.tvFrequency);
@@ -105,7 +113,7 @@ public class RVPilotAdapter extends RecyclerView.Adapter<RVPilotAdapter.PilotVie
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public RVPilotAdapter(ArrayList<Pilot> pilots, int minFrequency, int maxFrequency, boolean considerIMD, TextView tvMinDif, TextView tvMaxDif, TextView tvIMD, ProgressBar pbSorter)
+    public RVPilotAdapter(List<Pilot> pilots, int minFrequency, int maxFrequency, boolean considerIMD, TextView tvMinDif, TextView tvMaxDif, TextView tvIMD, ProgressBar pbSorter)
     {
         data = pilots;
 		this.minFrequency = minFrequency;
@@ -126,34 +134,47 @@ public class RVPilotAdapter extends RecyclerView.Adapter<RVPilotAdapter.PilotVie
 
     @Override
     public void onBindViewHolder(final PilotViewHolder holder, final int position) {
-        holder.name.setText(data.get(position).getName());
-        holder.cbA.setChecked(data.get(position).getBandA());
-        holder.cbB.setChecked(data.get(position).getBandB());
-        holder.cbE.setChecked(data.get(position).getBandE());
-        holder.cbF.setChecked(data.get(position).getBandF());
-        holder.cbR.setChecked(data.get(position).getBandR());
-        holder.cbD.setChecked(data.get(position).getBandD());
-        holder.cbDJI.setChecked(data.get(position).getBandDJI());
-        holder.swFixed.setChecked(data.get(position).isFixed());
-        holder.spChannel.setSelection(data.get(position).getFixedChannel()-1);
-        if(data.get(position).isFixed()) {
-            holder.tvspChannel.setVisibility(View.VISIBLE);
-            holder.spChannel.setVisibility(View.VISIBLE);
+        Pilot p = data.get(position);
+
+        holder.name.setText(p.getName());
+        holder.cbA.setChecked(p.getBandA());
+        holder.cbB.setChecked(p.getBandB());
+        holder.cbE.setChecked(p.getBandE());
+        holder.cbF.setChecked(p.getBandF());
+        holder.cbR.setChecked(p.getBandR());
+        holder.cbD.setChecked(p.getBandD());
+        holder.cbDJI.setChecked(p.getBandDJI());
+        holder.swFixed.setChecked(p.isFixed());
+        if (p.isFixed() && p.getBandDJI() && p.getFixedChannel() == 8) p.setFixedChannel(7);
+        holder.spChannel7.setSelection(p.getFixedChannel()-1); // check fixedChannel is not 8 when switching to DJI
+        holder.spChannel8.setSelection(p.getFixedChannel()-1);
+        if(!p.isFixed()) {
+            holder.tvspChannel7.setVisibility(View.GONE);
+            holder.tvspChannel8.setVisibility(View.GONE);
+            holder.spChannel7.setVisibility(View.GONE);
+            holder.spChannel8.setVisibility(View.GONE);
         }
-        else {
-            holder.tvspChannel.setVisibility(View.GONE);
-            holder.spChannel.setVisibility(View.GONE);
+        else if(p.getBandDJI()) {
+            holder.tvspChannel7.setVisibility(View.VISIBLE);
+            holder.tvspChannel8.setVisibility(View.GONE);
+            holder.spChannel7.setVisibility(View.VISIBLE);
+            holder.spChannel8.setVisibility(View.GONE);
+        } else { // Not DJI
+            holder.tvspChannel7.setVisibility(View.GONE);
+            holder.tvspChannel8.setVisibility(View.VISIBLE);
+            holder.spChannel7.setVisibility(View.GONE);
+            holder.spChannel8.setVisibility(View.VISIBLE);
         }
 
-		if(data.get(position).getFrequency() == null) {
+		if(p.getFrequency() == null) {
 			holder.tvBand.setText("-");
 			holder.tvChannel.setText("-");
 			holder.tvFrequency.setText("-");
 		}
 		else {
-			holder.tvBand.setText(data.get(position).getFrequency().getBandString());
-			holder.tvChannel.setText(data.get(position).getFrequency().getChannel() + "");
-			holder.tvFrequency.setText(data.get(position).getFrequency().getFrequenz() + "");
+			holder.tvBand.setText(p.getFrequency().getBandString());
+			holder.tvChannel.setText(p.getFrequency().getChannel() + "");
+			holder.tvFrequency.setText(p.getFrequency().getFrequenz() + "");
 		}
 
         final CheckBox fcbA = holder.cbA;
@@ -164,7 +185,7 @@ public class RVPilotAdapter extends RecyclerView.Adapter<RVPilotAdapter.PilotVie
         final CheckBox fcbD = holder.cbD;
         final CheckBox fcbDji = holder.cbDJI;
 
-        holder.spChannel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        holder.spChannel7.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int spPosition, long id) {
                 data.get(position).setFixedChannel(spPosition+1);
@@ -177,169 +198,156 @@ public class RVPilotAdapter extends RecyclerView.Adapter<RVPilotAdapter.PilotVie
             }
         });
 
-        holder.cbA.setOnClickListener(new View.OnClickListener() {
+        holder.spChannel8.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                data.get(position).setBandA(fcbA.isChecked());
-                if(data.get(position).isFixed() && fcbA.isChecked()) { //Disable all other bands in fixed mode
-                    data.get(position).setBandB(false);
-                    data.get(position).setBandE(false);
-                    data.get(position).setBandF(false);
-                    data.get(position).setBandR(false);
-                    data.get(position).setBandD(false);
-                    data.get(position).setBandDJI(false);
-                }
+            public void onItemSelected(AdapterView<?> parent, View view, int spPosition, long id) {
+                data.get(position).setFixedChannel(spPosition+1);
                 sortChannels();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                //Do nothing
             }
         });
 
-        holder.cbB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                data.get(position).setBandB(fcbB.isChecked());
-                if(data.get(position).isFixed() && fcbB.isChecked()) { //Disable all other bands in fixed mode
-                    data.get(position).setBandA(false);
-                    data.get(position).setBandE(false);
-                    data.get(position).setBandF(false);
-                    data.get(position).setBandR(false);
-                    data.get(position).setBandD(false);
-                    data.get(position).setBandDJI(false);
-                }
-                sortChannels();
+        holder.cbA.setOnClickListener(v -> {
+            p.setBandA(fcbA.isChecked());
+            if(p.isFixed() && fcbA.isChecked()) { //Disable all other bands in fixed mode
+                p.setBandB(false);
+                p.setBandE(false);
+                p.setBandF(false);
+                p.setBandR(false);
+                p.setBandD(false);
+                p.setBandDJI(false);
             }
+            sortChannels();
         });
 
-        holder.cbE.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                data.get(position).setBandE(fcbE.isChecked());
-                if(data.get(position).isFixed() && fcbE.isChecked()) { //Disable all other bands in fixed mode
-                    data.get(position).setBandA(false);
-                    data.get(position).setBandB(false);
-                    data.get(position).setBandF(false);
-                    data.get(position).setBandR(false);
-                    data.get(position).setBandD(false);
-                    data.get(position).setBandDJI(false);
-                }
-                sortChannels();
+        holder.cbB.setOnClickListener(v -> {
+            p.setBandB(fcbB.isChecked());
+            if(p.isFixed() && fcbB.isChecked()) { //Disable all other bands in fixed mode
+                p.setBandA(false);
+                p.setBandE(false);
+                p.setBandF(false);
+                p.setBandR(false);
+                p.setBandD(false);
+                p.setBandDJI(false);
             }
+            sortChannels();
         });
 
-        holder.cbF.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                data.get(position).setBandF(fcbF.isChecked());
-                if(data.get(position).isFixed() && fcbF.isChecked()) { //Disable all other bands in fixed mode
-                    data.get(position).setBandA(false);
-                    data.get(position).setBandB(false);
-                    data.get(position).setBandE(false);
-                    data.get(position).setBandR(false);
-                    data.get(position).setBandD(false);
-                    data.get(position).setBandDJI(false);
-                }
-                sortChannels();
+        holder.cbE.setOnClickListener(v -> {
+            p.setBandE(fcbE.isChecked());
+            if(p.isFixed() && fcbE.isChecked()) { //Disable all other bands in fixed mode
+                p.setBandA(false);
+                p.setBandB(false);
+                p.setBandF(false);
+                p.setBandR(false);
+                p.setBandD(false);
+                p.setBandDJI(false);
             }
+            sortChannels();
         });
 
-        holder.cbR.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                data.get(position).setBandR(fcbR.isChecked());
-                if(data.get(position).isFixed() && fcbR.isChecked()) { //Disable all other bands in fixed mode
-                    data.get(position).setBandA(false);
-                    data.get(position).setBandB(false);
-                    data.get(position).setBandE(false);
-                    data.get(position).setBandF(false);
-                    data.get(position).setBandD(false);
-                    data.get(position).setBandDJI(false);
-                }
-                sortChannels();
+        holder.cbF.setOnClickListener(v -> {
+            p.setBandF(fcbF.isChecked());
+            if(p.isFixed() && fcbF.isChecked()) { //Disable all other bands in fixed mode
+                p.setBandA(false);
+                p.setBandB(false);
+                p.setBandE(false);
+                p.setBandR(false);
+                p.setBandD(false);
+                p.setBandDJI(false);
             }
+            sortChannels();
         });
 
-        holder.cbD.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                data.get(position).setBandD(fcbD.isChecked());
-                if(data.get(position).isFixed() && fcbD.isChecked()) { //Disable all other bands in fixed mode
-                    data.get(position).setBandA(false);
-                    data.get(position).setBandB(false);
-                    data.get(position).setBandE(false);
-                    data.get(position).setBandF(false);
-                    data.get(position).setBandR(false);
-                    data.get(position).setBandDJI(false);
-                }
-                sortChannels();
+        holder.cbR.setOnClickListener(v -> {
+            p.setBandR(fcbR.isChecked());
+            if(p.isFixed() && fcbR.isChecked()) { //Disable all other bands in fixed mode
+                p.setBandA(false);
+                p.setBandB(false);
+                p.setBandE(false);
+                p.setBandF(false);
+                p.setBandD(false);
+                p.setBandDJI(false);
             }
+            sortChannels();
+        });
+
+        holder.cbD.setOnClickListener(v -> {
+            p.setBandD(fcbD.isChecked());
+            if(p.isFixed() && fcbD.isChecked()) { //Disable all other bands in fixed mode
+                p.setBandA(false);
+                p.setBandB(false);
+                p.setBandE(false);
+                p.setBandF(false);
+                p.setBandR(false);
+                p.setBandDJI(false);
+            }
+            sortChannels();
         }
         );
-        holder.cbDJI.setOnClickListener(new View.OnClickListener() {
-                                          @Override
-                                          public void onClick(View v) {
-                                              data.get(position).setBandDJI(fcbDji.isChecked());
-                                              if(data.get(position).isFixed() && fcbDji.isChecked()) { //Disable all other bands in fixed mode
-                                                  data.get(position).setBandA(false);
-                                                  data.get(position).setBandB(false);
-                                                  data.get(position).setBandE(false);
-                                                  data.get(position).setBandF(false);
-                                                  data.get(position).setBandR(false);
-                                                  data.get(position).setBandD(false);
-                                              }
-                                              sortChannels();
-                                          }
-                                      }
+        holder.cbDJI.setOnClickListener(v -> {
+            p.setBandDJI(fcbDji.isChecked());
+            holder.spChannel7.setSelection(p.getFixedChannel()-1);
+            if (p.isFixed() && fcbDji.isChecked()) { //Disable all other bands in fixed mode
+                p.setBandA(false);
+                p.setBandB(false);
+                p.setBandE(false);
+                p.setBandF(false);
+                p.setBandR(false);
+                p.setBandD(false);
+            }
+            sortChannels();
+        }
         );
 
-        holder.swFixed.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                data.get(position).setFixed(!data.get(position).isFixed());
-                if(data.get(position).isFixed()) {
-                    Frequency freq = data.get(position).getFrequency();
-                    data.get(position).setBandA(freq == null || Band.BAND_A.equals(freq.getBand()));
-                    data.get(position).setBandB(freq != null && Band.BAND_B.equals(freq.getBand()));
-                    data.get(position).setBandE(freq != null && Band.BAND_E.equals(freq.getBand()));
-                    data.get(position).setBandF(freq != null && Band.BAND_F.equals(freq.getBand()));
-                    data.get(position).setBandR(freq != null && Band.BAND_R.equals(freq.getBand()));
-                    data.get(position).setBandD(freq != null && Band.BAND_L.equals(freq.getBand()));
-                    data.get(position).setBandDJI(freq != null && Band.BAND_DJI.equals(freq.getBand()));
-                    data.get(position).setFixedChannel(freq != null ? freq.getChannel() : 1);
-                }
-
-                sortChannels();
+        holder.swFixed.setOnClickListener(v -> {
+            p.setFixed(!p.isFixed());
+            if(p.isFixed()) {
+                Frequency freq = p.getFrequency();
+                p.setBandA(freq == null || Band.BAND_A.equals(freq.getBand()));
+                p.setBandB(freq != null && Band.BAND_B.equals(freq.getBand()));
+                p.setBandE(freq != null && Band.BAND_E.equals(freq.getBand()));
+                p.setBandF(freq != null && Band.BAND_F.equals(freq.getBand()));
+                p.setBandR(freq != null && Band.BAND_R.equals(freq.getBand()));
+                p.setBandD(freq != null && Band.BAND_L.equals(freq.getBand()));
+                p.setBandDJI(freq != null && Band.BAND_DJI.equals(freq.getBand()));
+                p.setFixedChannel(freq != null ? freq.getChannel() : 1);
             }
+
+            sortChannels();
         });
 
-        holder.name.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final String[] name = new String[1];
+        holder.name.setOnClickListener(v -> {
+            final String[] name = new String[1];
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-                builder.setTitle(R.string.change_pilot_name);
+            AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+            builder.setTitle(R.string.change_pilot_name);
 
-                final EditText input = new EditText(v.getContext());
-                input.setInputType(InputType.TYPE_CLASS_TEXT);
-                input.setText(holder.name.getText());
-                builder.setView(input);
+            final EditText input = new EditText(v.getContext());
+            input.setInputType(InputType.TYPE_CLASS_TEXT);
+            input.setText(holder.name.getText());
+            builder.setView(input);
 
-                builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        name[0] = input.getText().toString();
-                        holder.name.setText(name[0]);
-                        data.get(position).setName(name[0]);
-                    }
-                });
-                builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
+            builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    name[0] = input.getText().toString();
+                    holder.name.setText(name[0]);
+                    data.get(position).setName(name[0]);
+                }
+            });
+            builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
 
-                builder.show();
-            }
+            builder.show();
         });
     }
 
@@ -353,11 +361,11 @@ public class RVPilotAdapter extends RecyclerView.Adapter<RVPilotAdapter.PilotVie
         super.onAttachedToRecyclerView(recyclerView);
     }
 
-    public ArrayList<Pilot> getData() {
+    public List<Pilot> getData() {
 		return data;
 	}
 
-	public void setData(ArrayList<Pilot> data, int minFrequency, int maxFrequency, boolean considerIMD) {
+	public void setData(List<Pilot> data, int minFrequency, int maxFrequency, boolean considerIMD) {
 		RVPilotAdapter.data = data;
 		this.minFrequency = minFrequency;
 		this.maxFrequency = maxFrequency;
@@ -382,17 +390,17 @@ public class RVPilotAdapter extends RecyclerView.Adapter<RVPilotAdapter.PilotVie
 			this.pbSorter.setVisibility(View.VISIBLE);
 			//resetChannels(); flickering with fast calculations but the old values stay without it
 
-			if(this.currentClacThread != null) {
-				this.currentClacThread.cancel(true);
-				while(!this.currentClacThread.isCancelled()){}
+			if(this.currentCalcThread != null) {
+				this.currentCalcThread.cancel(true);
+				while(!this.currentCalcThread.isCancelled()){}
 			}
 			ArrayList<Pilot> pilotCopy = new ArrayList<>();
 			for(int i=0; i<data.size(); i++) {
 				pilotCopy.add(data.get(i).getCopy());
 			}
 
-			this.currentClacThread = new Calc(pilotCopy, this.minFrequency, this.maxFrequency, this.considerIMD, this);
-			this.currentClacThread.execute();
+			this.currentCalcThread = new Calc(pilotCopy, this.minFrequency, this.maxFrequency, this.considerIMD, this);
+			this.currentCalcThread.execute();
         }
         else
         {
@@ -420,8 +428,8 @@ public class RVPilotAdapter extends RecyclerView.Adapter<RVPilotAdapter.PilotVie
         return considerIMD;
     }
 
-    protected void calculationFinished(ArrayList<Pilot> calculatedData, boolean error) {
-		this.currentClacThread = null;
+    protected void calculationFinished(List<Pilot> calculatedData, boolean error) {
+		this.currentCalcThread = null;
 		this.pbSorter.setVisibility(View.INVISIBLE);
 
 		if(!error) {
@@ -455,7 +463,7 @@ public class RVPilotAdapter extends RecyclerView.Adapter<RVPilotAdapter.PilotVie
 
 class Calc extends AsyncTask<Void, Void, Void> {
 
-	ArrayList<Pilot> data;
+	List<Pilot> data;
 	RVPilotAdapter rvPilotAdapter;
 	int minFrequency;
 	int maxFrequency;

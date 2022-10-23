@@ -24,21 +24,21 @@
 
 package florian.felix.flesch.fpvvideochannelsorter;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Configuration {
-	private ArrayList<Pilot> pilots;
+	private List<Pilot> pilots;
 	private int minFrequency = 5362;
 	private int maxFrequency = 5945;
 	private boolean considerIMD = true;
 	private String saveName;
 
-	public Configuration(ArrayList<Pilot> pilots, String saveName) {
+	public Configuration(List<Pilot> pilots, String saveName) {
 		this.pilots = pilots;
 		this.saveName = saveName;
 	}
 
-	public Configuration(ArrayList<Pilot> pilots, String saveName, int minFrequency, int maxFrequency, boolean considerIMD) {
+	public Configuration(List<Pilot> pilots, String saveName, int minFrequency, int maxFrequency, boolean considerIMD) {
 		this.pilots = pilots;
 		this.saveName = saveName;
 		this.minFrequency = minFrequency;
@@ -46,7 +46,7 @@ public class Configuration {
 		this.considerIMD = considerIMD;
 	}
 
-	public ArrayList<Pilot> getPilots () {
+	public List<Pilot> getPilots () {
 		return this.pilots;
 	}
 

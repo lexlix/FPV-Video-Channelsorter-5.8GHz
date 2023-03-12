@@ -140,12 +140,23 @@
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/tv_about_version"
+        android:layout_centerHorizontal="true"
+        android:autoLink="web"
+        android:paddingBottom="10dp"
+        android:text="@string/privacy_url"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/textView10"
         android:layout_centerHorizontal="true"
         android:autoLink="web"
         android:paddingTop="10dp"
         android:text="@string/imd_url"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
 
 </RelativeLayout>

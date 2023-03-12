@@ -33,7 +33,7 @@
     <string name="note_3">HDZero shares Raceband 1–8 and (*)Fatshark 2 and 4.</string>
 
     <string name="about_text">The App is completely free! If you want to contribute your ideas please write an email to:</string>
-    <string name="email">felixfflesch@gmail.com</string>
+    <string name="email">dev@felixflesch.de</string>
     <string name="github_url" translatable="false">https://github.com/lexlix/FPV-Video-Channelsorter-5.8GHz</string>
     <string name="made_by" translatable="false">Made by Felix-Florian Flesch</string>
     <string name="open_source">or visit the github Page to checkout the open source code:</string>
@@ -41,7 +41,8 @@
     <string name="felix_flesch" translatable="false">Felix-Florian Flesch</string>
     <string name="richard_bartelt" translatable="false">Richard Bartelt (IMD)</string>
     <string name="imd_info">More infos about IMD can be found here:</string>
-    <string name="imd_url" translatable="false">http://www.etheli.com/IMD/</string>
+    <string name="imd_url" translatable="false">https://www.etheli.com/IMD/</string>
+    <string name="privacy_url" translatable="false">https://felixflesch.de/channelsorter/privacypolicy</string>
 
     <string name="add_pilot">Add Pilot</string>
     <string name="max_distance">max distance</string>
